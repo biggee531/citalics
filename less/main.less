@@ -1,0 +1,360 @@
+@import "bootstrap/bootstrap.less";
+
+@brand-primary: rgba(4, 128, 212, 1);
+@brand-secondary: rgba(73, 165, 240, 1);
+@brand-text-primary: rgb(226, 229, 232);
+@brand-bg-primary: darken(@brand-secondary,25%);
+
+@header-bg:darken(@main-bg,10%);
+@main-bg: @brand-primary;
+//@main-bg: rgb(35, 89, 140);
+@main-bg-alt: lighten(@main-bg, 25%);
+@footer-bg: rgba(30,30,30,1);
+@nav-color: lighten(@header-bg,10%);
+@shadow-color:rgba(0,0,0,0.8);
+
+@text-title: lighten(@text-primary, 10%);
+@text-title-alt: fadeout(darken(@text-title, 25%),15%);
+@text-primary: rgba(28, 102, 169, 1);
+@text-secondary: rgba(169, 155, 108, 1);
+@text-copy: rgba(200, 200, 200, 1.0);
+@text-copy-alt: rgba(28, 102, 169, 1);
+
+@header-height:50px;
+
+@bg-img:url("../img/60-lines.png");
+
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+  text-shadow: @string;
+}
+.box-shadow (@string) {
+  -webkit-box-shadow: @string;
+  -moz-box-shadow:    @string;
+  box-shadow:         @string;
+}
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.box-sizing (@type: border-box) {
+  -webkit-box-sizing: @type;
+  -moz-box-sizing:    @type;
+  box-sizing:         @type;
+}
+
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius:    @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius:  @bottomleft;
+  -webkit-border-top-left-radius:     @topleft;
+
+  -moz-border-radius-topright:        @topright;
+  -moz-border-radius-bottomright:     @bottomright;
+  -moz-border-radius-bottomleft:      @bottomleft;
+  -moz-border-radius-topleft:         @topleft;
+
+  border-top-right-radius:            @topright;
+  border-bottom-right-radius:         @bottomright;
+  border-bottom-left-radius:          @bottomleft;
+  border-top-left-radius:             @topleft;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+.transition (@prop: all, @time: 0.1s, @ease: ease-in-out) {
+  -webkit-transition: @prop @time @ease;
+  -moz-transition: @prop @time @ease;
+  -o-transition: @prop @time @ease;
+  -ms-transition: @prop @time @ease;
+  transition: @prop @time @ease;
+}
+.opacity (@opacity: 0.5) {
+  -webkit-opacity: 	@opacity;
+  -moz-opacity: 		@opacity;
+  opacity: 		@opacity;
+}
+
+a, a:visited, a:hover, a:active, a:focus {color: inherit;outline: 0;}
+a:hover {.transition;}
+button::-moz-focus-inner {border: 0;}
+body {
+  text-rendering: optimizeLegibility;
+  padding-bottom: 20px;
+  color:@brand-text-primary;
+  background-color: @footer-bg;
+  background-image: @bg-img;
+  font-size: 1em;
+}
+
+body > .container-fluid {
+  padding: 0;
+  & > .row {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Footer */
+footer {
+  margin: 0 auto;
+  padding: 5px;
+  background-color: @footer-bg;
+  background-image: @bg-img;
+  width: 100%;
+  height:100%;
+  color: @text-title-alt;
+  .box-shadow(inset 0 30px 10px -25px fadeout(@shadow-color,65%));
+}
+footer h3{
+  background-color: transparent;
+  color:@text-title;
+}
+footer p{
+  background-color: transparent;
+  color:@text-copy;
+}
+hr {
+  /* A better looking default horizontal rule */
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #999;
+  margin: 1em 0;
+  padding: 0;
+}
+
+hr.gold {
+  &:extend(hr);
+  border-color: fadeout(darken(@brand-secondary, 10%), 25%);
+  margin: 1em 20em;
+  .box-shadow(0 1px 5px -2px @shadow-color);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: @header-height;
+  width: 100%;
+  z-index: 1000;
+  display: block;
+  padding: 0 5%;
+  background-color: fadeout(@header-bg,75%);
+  line-height:@header-height;
+  color:fadeout(lighten(@nav-color,15%),75%);
+  .transition;
+  margin-bottom:50px;
+//  .box-shadow(0 1px 2px 1px fadeout(@shadow-color,75%));
+}
+.header:hover{
+  background-color: fadeout(@header-bg,5%);
+  color:fadeout(lighten(@nav-color,15%),35%);
+//  .box-shadow(0 1px 4px 2px fadeout(@shadow-color,65%));
+  .transition;
+}
+.nav-header {
+  text-align: center;
+  height:100%;
+  width:100%;
+  float:left;
+}
+.nav-header a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}
+li.tab{
+  width:25%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+}
+//.main-wrapper{
+//  top:@header-height;
+//  width:100%;
+//  height:100%;
+//}
+.main {
+  margin-top:0;
+  margin-bottom:0;
+  background-color: @main-bg;
+  background-image: url("../img/60-lines.png");
+  padding-left: 0;
+  padding-right: 0;
+  padding-top:@header-height;
+//  padding-bottom: 15px;
+//  border-bottom: 2px solid fadeout(darken(@main-bg, 2%), 25%);
+//  box-shadow: inset 0 -5px 10px -5px rgba(0, 0, 0, 0.75);
+  position:absolute;
+}
+.copy {
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.copy-alt {
+  &:extend(.copy);
+  color: @text-copy-alt;
+  font-weight: bold;
+}
+p{
+  &:extend(.copy);
+}
+.page-home, .page-services, .page-projects, .page-contact{
+  border-bottom: 1px solid fadeout(lighten(@main-bg, 50%), 90%);
+  padding-bottom:0;
+  padding-left:0;
+  padding-right:0;
+}
+.page-home {
+}
+.page-services {
+}
+.page-projects {
+}
+.page-contact {
+}
+
+.lvl-05{
+    height: 300px;
+    width: 100%;
+    border: 0 solid fadeout(darken(@main-bg, 5%), 25%);
+    background-image: url("../img/bgs/gears.JPG");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top left;
+}
+
+.lvl-0, .lvl-1, .lvl-2, .lvl-3{
+  margin: 0 auto;
+  padding: 10px;
+//  background-image: @bg-img;
+}
+.lvl-1,.lvl-2,.lvl-3{
+//  .box-shadow(inset 0 30px 10px -25px fadeout(@shadow-color,65%));
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.lvl-1 p:first-of-type:first-line, .lvl-2 p:first-child:first-line, .lvl-3 p:first-child:first-line {
+  font-weight: bold;
+  font-size: 1.25em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  color:lighten(@brand-text-primary,5%);
+}
+
+.lvl-1 p:first-child:first-letter, .lvl-2 p:first-child:first-letter, .lvl-3 p:first-child:first-letter {
+  font-size: 1.8em;
+  color:lighten(@brand-text-primary,10%);
+}
+.lvl-0{
+  background-color:lighten(@brand-bg-primary,5%);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  color:lighten(@brand-text-primary,15%);
+}
+.lvl-1{
+  background-color:darken(@brand-bg-primary, 5%);
+}
+.lvl-2{
+  background-color:darken(@brand-bg-primary, 10%);
+}
+.lvl-3{
+  background-color:darken(@brand-bg-primary, 15%);
+}
+
+/*
+* Remove text-shadow in selection highlight: h5bp.com/i
+* These selection rule sets have to be separate.
+* Customize the background color to match your design.
+*/
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+/* Target SM Screens */
+@media (max-width: @screen-sm-max) {
+
+}
+/* Target XS Screens */
+@media (max-width: @screen-xs-max) {
+
+}
+
+
+hr.fancy-line {
+  border: 0;
+  height: 1px;
+
+}
+
+hr.fancy-line:before {
+  top: -0.5em;
+  height: 1em;
+}
+
+hr.fancy-line:after {
+  content: '';
+  height: 0.5em;
+  top: 1px;
+}
+
+hr.fancy-line:before, hr.fancy-line:after {
+  content: '';
+  width: 100%;
+}
+
+hr.fancy-line, hr.fancy-line:before {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 75%);
+}
+
+hr.fancy-line-dark {
+  &:extend(hr.fancy-line);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+// Bootstrap overrides
+.nav>li>a{
+  padding:0;
+  color:inherit;
+  background-color: transparent;
+  font-size: 2em;
+}
+    //active tab
+    .nav > li > a:not(.tab_active)&&a:not(:hover){
+      .opacity(0);
+      background-color: transparent;
+      color:transparent;
+    }
+    .nav > li > a:hover{
+      background-color: fadeout(lighten(@header-bg,10%),50%);
+      color:fadeout(lighten(@nav-color,50%),50%);
+    }
+
+    .nav > li > a:focus{
+      background-color: transparent;
+      color:fadeout(lighten(@nav-color,50%),25%);
+      cursor:default;
+      .transition;
+    }
