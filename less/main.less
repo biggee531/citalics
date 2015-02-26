@@ -2,22 +2,22 @@
 
 @brand-primary: rgba(4, 128, 212, 1);
 @brand-secondary: rgba(73, 165, 240, 1);
-@brand-text-primary: rgb(226, 229, 232);
-@brand-bg-primary: darken(@brand-secondary,25%);
+@brand-text-primary: rgb(51, 51, 51);
+@brand-bg-primary: rgb(255,255,255);
 
-@header-bg:darken(@main-bg,10%);
+@header-bg:rgb(235,235,235);
 @main-bg: @brand-primary;
 //@main-bg: rgb(35, 89, 140);
 @main-bg-alt: lighten(@main-bg, 25%);
 @footer-bg: rgba(30,30,30,1);
-@nav-color: lighten(@header-bg,10%);
+@nav-color: rgb(35,35,35);
 @shadow-color:rgba(0,0,0,0.8);
 
 @text-title: lighten(@text-primary, 10%);
 @text-title-alt: fadeout(darken(@text-title, 25%),15%);
 @text-primary: rgba(28, 102, 169, 1);
 @text-secondary: rgba(169, 155, 108, 1);
-@text-copy: rgba(200, 200, 200, 1.0);
+@text-copy: rgba(51, 51, 51, 1.0);
 @text-copy-alt: rgba(28, 102, 169, 1);
 
 @header-height:50px;
@@ -105,9 +105,10 @@ body {
 
 body > .container-fluid {
   padding: 0;
-  & > .row {
+  & .row {
     padding: 0;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -156,16 +157,16 @@ hr.gold {
   z-index: 1000;
   display: block;
   padding: 0 5%;
-  background-color: fadeout(@header-bg,75%);
+  background-color: fadeout(@header-bg,10%);
   line-height:@header-height;
-  color:fadeout(lighten(@nav-color,15%),75%);
+  color:fadeout(darken(@nav-color,15%),75%);
   .transition;
   margin-bottom:50px;
 //  .box-shadow(0 1px 2px 1px fadeout(@shadow-color,75%));
 }
 .header:hover{
-  background-color: fadeout(@header-bg,5%);
-  color:fadeout(lighten(@nav-color,15%),35%);
+  background-color:@header-bg;
+  color:fadeout(darken(@nav-color,15%),35%);
 //  .box-shadow(0 1px 4px 2px fadeout(@shadow-color,65%));
   .transition;
 }
@@ -195,7 +196,7 @@ li.tab{
 .main {
   margin-top:0;
   margin-bottom:0;
-  background-color: @main-bg;
+  background-color: @header-bg;
   background-image: url("../img/60-lines.png");
   padding-left: 0;
   padding-right: 0;
@@ -279,7 +280,21 @@ p{
 .lvl-3{
   background-color:darken(@brand-bg-primary, 15%);
 }
-
+.featured-content{
+  width: 200px;
+  height: 200px;
+  padding:5px;
+  margin:5px auto;
+  margin-top:-100px;
+  background-color:darken(@brand-bg-primary, 5%);
+  .border-radiuses(1px,0,0,1px);
+  border:5px solid darken(@brand-bg-primary, 5%);
+  background-image: url("../img/bgs/gears.JPG");
+  line-height: 200px;
+  font-size: 2em;
+  color: #fff;
+  font-weight: bold;
+}
 /*
 * Remove text-shadow in selection highlight: h5bp.com/i
 * These selection rule sets have to be separate.
@@ -348,13 +363,16 @@ hr.fancy-line-dark {
       color:transparent;
     }
     .nav > li > a:hover{
-      background-color: fadeout(lighten(@header-bg,10%),50%);
-      color:fadeout(lighten(@nav-color,50%),50%);
+//      background-color: fadeout(lighten(@header-bg,10%),50%);
+      color:fadeout(darken(@nav-color,50%),50%);
+      .box-shadow(0px 4px 0px 0px @brand-primary inset);
+      .transition(all,0.05s,ease-in-out);
     }
 
     .nav > li > a:focus{
       background-color: transparent;
-      color:fadeout(lighten(@nav-color,50%),25%);
+      color:@brand-primary;
+      .box-shadow(0px 4px 0px 0px @brand-primary inset);
       cursor:default;
-      .transition;
+      .transition(all,0.05s,ease-in-out);
     }
